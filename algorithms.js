@@ -3,7 +3,11 @@
 
 // Reverse the provided string.
 const reverseString = function (str) {
-  // your code goes here
+  var revStr = "";
+  for (var i = str.length - 1; i >= 0; i--) {
+    revStr += str[i];
+  }
+  return revStr;
 };
 
 // Reverse only the vowels in the provided string.
@@ -13,14 +17,21 @@ const reverseVowels = function (str) {
 
 // Factorialize a Number
 const factorialize = function (num) {
-  // your code goes here
+  var total = 1;
+  for (var i = 2; i <= num; i++) {
+    total = total * i;
+  }
+  return total;
 };
 
 /*
 Calculate the sum of two integers a and b, but you are not allowed to use the operator + and -. Example: Given a = 1 and b = 2, return 3.
 */
-const getSum = function (a, b) {    
-  // your code goes here
+const getSum = function (a, b) {
+  var collection = [a,b];
+  return collection.reduce(function (accumulator, item) {
+    return item;
+  });
 };
 
 /*
@@ -48,7 +59,7 @@ const repeat = function (str, count) {
 
 /*
  ***THIS MIGHT BE AN OUT OF SCOPE PROBLEM IF YOU ARE A FULCRUM STUDENT***
- Create data structuce called Union-Find. 
+ Create data structuce called Union-Find.
  Given a set of 'n' objects.  The interface is as follows
 ・Union command: connect two objects.
 ・Connected query: is there a path connecting the two objects?
@@ -61,7 +72,7 @@ const UF = function (n) {
 
 /*
   Test if a string has all unique characters
-  Return a boolean value 
+  Return a boolean value
 */
 
 const isUnique = function (s) {
@@ -70,7 +81,7 @@ const isUnique = function (s) {
 
 /*
   Test if a string is a palindrome
-  Return a boolean value 
+  Return a boolean value
 */
 
 const isPalindrome = function (s) {
@@ -79,7 +90,7 @@ const isPalindrome = function (s) {
 
 /*
   Test if string 2 is a permutation of string 1
-  Return a boolean value 
+  Return a boolean value
 */
 
 const isPermutation = function (s1, s2) {
@@ -88,7 +99,7 @@ const isPermutation = function (s1, s2) {
 
 /*
   Test if a string has a permutation which is a palindrome
-  Return a boolean value 
+  Return a boolean value
 */
 
 const hasPalindromePermutation = function (str) {
@@ -97,7 +108,7 @@ const hasPalindromePermutation = function (str) {
 
 /*
   Given an array with sub-arrays, all of which hold numbers, return the sum
-  of all the numbers in the array  
+  of all the numbers in the array
 */
 
 const arraySum = function (arr) {
