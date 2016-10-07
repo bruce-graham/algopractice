@@ -9,6 +9,31 @@ const reverseString = function (str) {
 // Reverse only the vowels in the provided string.
 const reverseVowels = function (str) {
   //to be completed
+  //---------helper functions
+  var swap = function(i, j, array) {
+    var temp = array[i];
+    array[i] = array[j];
+    array[j] = temp;
+  }; 
+   
+  var isVowel = function(letter) {
+    var lowercased = letter.toLowerCase();
+    var vowels = {a: true, e: true, i: true, o: true, u: true};
+    return Boolean(vowels[lowercased]);
+  }; 
+
+  var indices = [];
+  var sArray = str.split("");
+  
+  sArray.forEach(function(el, i) {
+    if(isVowel(el)) indices.push(i); 
+  });
+  
+  while(indices.length > 1) {
+    swap(indices.pop(), indices.shift(), sArray);
+  }
+
+  return sArray.join("");
 };
 
 // Factorialize a Number
@@ -40,81 +65,6 @@ const twoSum = function (arr, tgt) {
   }
   return results;
 };
-
-/*
- Create data structuce called Union-Find. 
- Given a set of 'n' objects.
- See test cases to develop the data structure
-・Union command: connect two objects.
-・Find/connected query: is there a path connecting the two objects?
-*/
-
-const UF = function (n) {
-  this.id = [];
-  this.sz = [];
-  for(var i = 0; i < n; i++) {
-    this.id[i] = i;
-  };
-
-  this.connected = function (p,q) {
-    /*Quick find
-      return this.id[p] === this.id[q];
-    */
-
-    var rootP = this.findRoot(p) 
-    var rootQ = this.findRoot(q) 
-    console.log(`rootP ${rootP}, rootQ ${rootQ}`);
-    return rootP === rootQ;    
-  };
-
-  this.union = function (p,q) {
-    /*
-    var idP = this.id[p];
-    var idQ = this.id[q];
-
-    for(var i = 0; i < this.id.length; i++) {
-      if(this.id[i] === idP) this.id[i] = idQ;
-    }
-    */
-
-    /*
-      Quick union [lazy approach]
-    */
-
-    var rootP = this.findRoot(p) 
-    var rootQ = this.findRoot(q) 
-    if(rootP === rootQ) return;
-    /*
-      //set p's root to the root of q's
-      this.id[rootP] = rootQ;
-    */
-
-    if(this.sz[rootP] < this.sz[rootQ]) { 
-      this.id[rootP] = rootQ;
-      this.sz[rootQ] += this.sz[rootP];
-    } else {
-      this.id[rootQ] = rootP;
-      this.sz[rootP] += this.sz[rootQ];
-    }
-    // console.log(`rootP ${rootP}, rootQ ${rootQ}`);
-  };
-
-  this.findRoot = function (p) {
-    //find id
-    //if id == p return true
-    //else set p to id[p]
-    while(p != this.id[p]) {
-      /*
-        Path compression
-      */
-      // this.id[p] = this.id[this.id[p]];
-      
-      p = this.id[p];
-    } 
-    return p;
-  }
-};
-
 
 /*
   Test if a string has all unique characters
@@ -308,3 +258,17 @@ const arraySum = function (arr) {
     return total;
   }
   */
+
+const allPermutations = function (s) {
+  // body...
+  var results = [];
+  var recurser = function (combo, rest) {
+    if(rest.length === 0) {results.push(combo); return;}
+    for(var i = 0; i < rest.length; i++) {
+      recurser(combo + rest[i], rest.slice(0,i).concat(rest.slice(i+1)))
+    }
+  }
+  recurser("", s);
+  console.log(results);
+  return results;
+}
