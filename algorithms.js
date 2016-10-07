@@ -12,7 +12,12 @@ const reverseString = function (str) {
 
 // Reverse only the vowels in the provided string.
 const reverseVowels = function (str) {
-  // your code goes here
+  var obj = {};
+  str.forEach(function (letter, index) {
+    if (/[a,e,i,o,u]/g.test(letter)) {
+      obj[index] = letter;
+    }
+  })
 };
 
 // Factorialize a Number
@@ -49,12 +54,33 @@ Note:
 Your algorithm should have a linear runtime complexity. Could you implement it without using extra memory?
 */
 const singleNumber = function (arr) {
-  // your code goes here
+  var output;
+  var obj = {};
+  for (var i = 0; i < arr.length; i++) {
+    if (!obj[arr[i]]) {
+      obj[arr[i]] = 1;
+    } else {
+      obj[arr[i]]++;
+    }
+  }
+
+  for (var key in obj) {
+    if (obj[key] === 1) {
+      output = key;
+    }
+  }
+  return Number(output);
 };
 
 //it should take a string and repeat it a number of times
 const repeat = function (str, count) {
-  // your code goes here
+  var output = "";
+
+  for (var i = 0; i < count; i++) {
+    output += str;
+  }
+
+  return output;
 };
 
 /*
