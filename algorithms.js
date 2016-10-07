@@ -83,32 +83,6 @@ const repeat = function (str, count) {
   return output;
 };
 
-/*
- ***THIS MIGHT BE AN OUT OF SCOPE PROBLEM IF YOU ARE A FULCRUM STUDENT***
- Create data structuce called Union-Find.
- Given a set of 'n' objects.  The interface is as follows
-・Union command: connect two objects.
-・Connected query: is there a path connecting the two objects?
- See test cases to develop the data structure
-*/
-
-const UF = function (n) {
-  // your code goes here
-};
-
-/*
-  Test if a string has all unique characters
-  Return a boolean value
-*/
-
-const isUnique = function (s) {
-  // your code goes here
-};
-
-/*
-  Test if a string is a palindrome
-  Return a boolean value
-*/
 
 const isPalindrome = function (s) {
   // your code goes here
@@ -140,3 +114,20 @@ const hasPalindromePermutation = function (str) {
 const arraySum = function (arr) {
   // your code goes here
 };
+
+/*
+*/
+
+const allPermutations = function (s) {
+  // body...
+  var results = [];
+  var recurser = function (combo, rest) {
+    if(rest.length === 0) {results.push(combo); return;}
+    for(var i = 0; i < rest.length; i++) {
+      recurser(combo + rest[i], rest.slice(0,i).concat(rest.slice(i+1)))
+    }
+  }
+  recurser("", s);
+  console.log(results);
+  return results;
+}
